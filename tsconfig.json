@@ -8,11 +8,11 @@
     "rootDir": "./src",
     "outDir": "build",
 
-    "module": "commonjs",
+    "module": "CommonJS",
     "target": "ESNext",
     "lib": ["esnext", "dom"],
     "importHelpers": true,
-    "incremental": true,
+    "incremental": false,
     "declaration": true, // output .d.ts declaration files for consumers
     "sourceMap": true, // output .js.map sourcemap files for consumers
 

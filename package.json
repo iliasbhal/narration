@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "version": "0.0.1",
   "name": "narration",
   "description": "Model statecharts just by describing them.",
-=======
-  "version": "0.0.11",
-  "name": "chai-latte",
-  "description": "Toolkit to build expressive & readable fluent interface libraries.",
->>>>>>> f108ead4c0d828ee65b4fccc3877501cf1ebbd24
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "repository": {
