@@ -1,12 +1,19 @@
 import { createNarration } from '../entry';
+import { Machine } from '../lib/Machine';
+import { createExpressionTestSuite } from './createExpressionTestSuite';
 
-import baseNarration from '../index';
-describe('index', () => {
+describe('createNarration', () => {
   it('should not crash when creating a narration', () => {
     createNarration();
   });
 
-  baseNarration.__expressions.forEach((expression) => {
-    it.todo(expression.builder.debugId)
-  })
+  it('can create machine ', () => {
+    const { ctx } = createNarration();
+    expect(ctx.machine).toBeInstanceOf(Machine)
+  });
 })
+
+describe('sentences', () => {
+  const { createTest, ensureTDD } = createExpressionTestSuite();
+  ensureTDD();
+});
