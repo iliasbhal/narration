@@ -1,4 +1,4 @@
-import fluentAPI from '../index';
+import rawExpressions from '../expressions/index';
 
 type JestTest = (testName: string, callback: jest.ProvidesCallback) => void;
 
@@ -19,7 +19,7 @@ export const createExpressionTestSuite = () => {
   });
 
   const ensureTDD = () => {
-    fluentAPI.__expressions.forEach((expression) => {
+    rawExpressions.__expressions.forEach((expression) => {
       const expressionId = expression.builder.debugId;
       if (writtenTestIds.has(expressionId)) {
         return;

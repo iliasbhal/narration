@@ -1,4 +1,4 @@
-import { createNarration } from '../entry';
+import { createNarration } from '..';
 import { StateChart } from '../lib/StateChart';
 import { createExpressionTestSuite } from './createExpressionTestSuite';
 

@@ -13,6 +13,7 @@ type Arg<Idx extends number, ArgIndex extends number> = Parameters<ExpressionCal
 type Return<Idx extends number> = ReturnType<ExpressionCallback<Idx>>;
 
 type Root = {}
-  & { it: { can: { be: { (stateName: Arg<0, 0>) : Return<0>; }; }; }; };
+  & { it: { starts: { as: { (stateName: Arg<0, 0>) : Return<0>; }; }; }; }
+  & { it: { can: { be: { (stateName: Arg<1, 0>) : Return<1>; }; }; }; };
 
 export default builder as unknown as Root;
