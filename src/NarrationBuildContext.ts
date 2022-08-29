@@ -32,7 +32,8 @@ export class NarrationBuildContext {
   }
 }
 
-export const withNarrationCtx = <T extends Function>(callback: T) : T => {
+
+export const withNarration = <T extends Function>(callback: T) : T => {
   const wrapped : any = (...args)  => {
     const narrationCtx = NarrationBuildContext.getCurrent();
 
@@ -41,6 +42,8 @@ export const withNarrationCtx = <T extends Function>(callback: T) : T => {
 
     return returned;
   }
+
+  wrapped.toString = () => callback.toString();
 
   return wrapped;
 }
