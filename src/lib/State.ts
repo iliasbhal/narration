@@ -1,10 +1,14 @@
-export class State {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
 
-  static create(stateName: string) {
-    return new State(stateName);
+export interface StateConfig {
+  initial: boolean;
+}
+
+export class State<Config extends StateConfig> {
+  name: string;
+  config: Config;
+
+  constructor(name: string, config?: Config) {
+    this.name = name;
+    this.config = config;
   }
 }
