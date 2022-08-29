@@ -18,13 +18,14 @@
     "setup": "yarn build && npm link && npm link narration",
     "dev": "yarn setup && yarn build:watch",
     "deploy": "yarn test && yarn build && npm publish",
+    "compile:expressions": "npx chai-latte --input ./src/expressions/index",
     "test": "jest",
     "build": "tsc",
     "build:watch": "tsc -w"
   },
   "peerDependencies": {},
   "dependencies": {
-    "chai-latte": "^0.0.10"
+    "chai-latte": "^0.1.0"
   },
   "devDependencies": {
     "@jest/types": "^28.1.3",
