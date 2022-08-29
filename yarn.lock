@@ -885,10 +885,13 @@ caniuse-lite@^1.0.30001370:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001373.tgz"
   integrity sha512-pJYArGHrPp3TUqQzFYRmP/lwJlj8RCbVe3Gd3eJQkAV8SAC6b19XS9BjMvRdvaS8RMkaTN8ZhoHP6S1y8zzwEQ==
 
-chai-latte@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/chai-latte/-/chai-latte-0.0.10.tgz#bddcb900b3f3b328be365593daffb29bed6c9e69"
-  integrity sha512-T76Xbt60AmX/gWNBqazlmFZziffcQu+D0VrO00HXPuyga3BYH1erU2UijyEs5QoEA/HxLnToVJQ+sjXjKeEAZQ==
+chai-latte@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/chai-latte/-/chai-latte-0.1.0.tgz#4de861ce7bb3bb40583f023b6ee3740276e94d53"
+  integrity sha512-dwC2+CsgbSdMkUypFBw3vkfIVs73pwHZDzUi2BbSFvyHlL5q7e6d628Tt/1KyJYSTaIy0gQTVsCyRRwhdFy+Xg==
+  dependencies:
+    commander "^9.4.0"
+    tslib "^2.4.0"
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -964,6 +967,11 @@ color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
+
+commander@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.0.tgz#bc4a40918fefe52e22450c111ecd6b7acce6f11c"
+  integrity sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==
 
 concat-map@0.0.1:
   version "0.0.1"
