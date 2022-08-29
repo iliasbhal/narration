@@ -1,6 +1,7 @@
 import { createNarration } from '../../entry';
 
 // Notes:
+// example from: https://www.youtube.com/watch?v=Km8QGtRr1z8
 // "while" is used to talk about states
 // "when" is used to describe events
 // "it starts" is used to create and or set initial state
