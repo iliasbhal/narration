@@ -1,5 +1,5 @@
 import { createNarration } from '../entry';
-import { Machine } from '../lib/Machine';
+import { StateChart } from '../lib/StateChart';
 import { createExpressionTestSuite } from './createExpressionTestSuite';
 
 describe('createNarration', () => {
@@ -7,9 +7,9 @@ describe('createNarration', () => {
     createNarration();
   });
 
-  it('can create machine ', () => {
+  it('contains a statechart', () => {
     const { ctx } = createNarration();
-    expect(ctx.machine).toBeInstanceOf(Machine)
+    expect(ctx.statechart).toBeInstanceOf(StateChart)
   });
 })
 

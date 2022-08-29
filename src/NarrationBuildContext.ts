@@ -1,4 +1,4 @@
-import { Machine } from './lib/Machine';
+import { StateChart } from './lib/StateChart';
 import { State } from './lib/State';
 
 export class NarrationBuildContext {
@@ -18,7 +18,7 @@ export class NarrationBuildContext {
   }
 
   ctx = new Set();
-  machine = new Machine();
+  statechart = new StateChart();
   add(el: unknown) {
     this.ctx.add(el)
   }
@@ -26,7 +26,7 @@ export class NarrationBuildContext {
   build() {
     this.ctx.forEach((el: unknown) => {
       if (el instanceof State) {
-        this.machine.states.set(el.name, el);
+        this.statechart.states.set(el.name, el);
       }
     })
   }
