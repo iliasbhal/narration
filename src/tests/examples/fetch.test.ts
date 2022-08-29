@@ -1,8 +1,10 @@
 import { createNarration } from '../../entry';
 
-const makeFetch = () => {
+// Notes:
+// "while" is used to talk about states
+// "when" is used to describe events
 
-}
+const makeFetch = () => {}
 
 it('example: fetch', () => {
   const { it, while, when } = createNarration();
