@@ -13,7 +13,7 @@ export const createExpressionTestSuite = () => {
     }
   }
 
-  const createTest = Object.assign(createTester('normal'), {
+  const testExpression = Object.assign(createTester('normal'), {
     only: createTester('only'),
     skip: createTester('skip'),
   });
@@ -30,7 +30,7 @@ export const createExpressionTestSuite = () => {
   }
 
   return {
-    createTest,
+    testExpression,
     ensureTDD,
   }
 }

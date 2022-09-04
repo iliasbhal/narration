@@ -4,16 +4,16 @@ import { createExpressionTestSuite } from './createExpressionTestSuite';
 
 describe('createNarration', () => {
   it('should not crash when creating a narration', () => {
-    createNarration();
+    createNarration('abcd');
   });
 
   it('contains a statechart', () => {
-    const { ctx } = createNarration();
-    expect(ctx.statechart).toBeInstanceOf(StateChart)
+    const { ctx } = createNarration('abcd');
+    expect(ctx).toBeInstanceOf(StateChart)
   });
 })
 
 describe('sentences', () => {
-  const { createTest, ensureTDD } = createExpressionTestSuite();
+  const { testExpression, ensureTDD } = createExpressionTestSuite();
   ensureTDD();
 });
