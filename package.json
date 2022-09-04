@@ -25,7 +25,8 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "chai-latte": "^0.1.0"
+    "chai-latte": "^0.1.0",
+    "xstate": "^4.33.5"
   },
   "devDependencies": {
     "@jest/types": "^28.1.3",

@@ -1,37 +1,31 @@
 import generatedChaiLatte from './expressions/generated';
-import { NarrationBuildContext } from './NarrationBuildContext';
+import { StateChart } from './lib/StateChart';
+import { GlobalContext } from './GlobalContext';
+
+export * from './lib/StateChart';
 
 type NarrationFluentAPI = typeof generatedChaiLatte;
 
 type ExtraNarrationAPI = {
   end: Function;
-  ctx: NarrationBuildContext;
+  ctx: StateChart;
 }
 
 type Narration = ExtraNarrationAPI & NarrationFluentAPI;
 
-export const createNarration = () : Narration => {
-  const narrationCtx = NarrationBuildContext.create();
+export const createNarration = (name: string) : Narration => {
+  const statechart = new StateChart(name)
+  GlobalContext.set(statechart);
 
-  const extraFluentExpression = {
-    ctx: narrationCtx,
+  const extraFluentExpression : ExtraNarrationAPI = {
+    ctx: statechart,
     end: () => {
-      narrationCtx.build();
+      statechart.start();
     }
   };
 
-  return new Proxy({} as Narration, {
-    get(target, prop) {
-      if (generatedChaiLatte[prop]) {
-        return Reflect.get(generatedChaiLatte, prop, generatedChaiLatte)
-      }
-
-      if (extraFluentExpression[prop]) {
-        return extraFluentExpression[prop]
-      }
-
-      const narrationAttribute = Reflect.get(narrationCtx, prop, narrationCtx);
-      return narrationAttribute;
-    }
-  });
+  return {
+    ...generatedChaiLatte,
+    ...extraFluentExpression,
+  };
 }
