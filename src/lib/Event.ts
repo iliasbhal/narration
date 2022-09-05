@@ -9,7 +9,7 @@ export class Event extends StateChartObject {
     this.name = name;
   }
 
-  trigger() {
-    this.ctx.trigger(this)
+  happen() {
+    this.ctx.happen(this)
   }
 }

@@ -57,31 +57,31 @@ describe('Example: Multistep', () => {
 
     testShouldOnlyBe(INITIAL);
 
-    Next.trigger();
+    Next.happen();
 
     testShouldOnlyBe(QUESTION_1);
 
-    Prev.trigger();
+    Prev.happen();
 
     testShouldOnlyBe(INITIAL);
 
-    Next.trigger();
+    Next.happen();
 
     testShouldOnlyBe(QUESTION_1);
 
-    Next.trigger();
+    Next.happen();
 
     testShouldOnlyBe(QUESTION_2);
 
-    Next.trigger();
+    Next.happen();
 
     testShouldOnlyBe(COMPLETED);
 
-    Next.trigger();
+    Next.happen();
 
     testShouldOnlyBe(COMPLETED);
 
-    Prev.trigger();
+    Prev.happen();
 
     testShouldOnlyBe(COMPLETED);
   })

@@ -97,7 +97,7 @@ export class StateChart extends StateChartObject {
     return this.state.matches(state.name);
   }
 
-  trigger(event: Event) {
+  happen(event: Event) {
     this.service.send({ type: event.name });
   }
 }

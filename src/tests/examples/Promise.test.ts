@@ -36,13 +36,13 @@ describe('Example: Promise', () => {
     expect(REJECTED.is()).toBe(false);
     expect(FULFILLED.is()).toBe(false);
 
-    Resolve.trigger();
+    Resolve.happen();
 
     expect(PENDING.is()).toBe(false);
     expect(REJECTED.is()).toBe(false);
     expect(FULFILLED.is()).toBe(true);
 
-    Reject.trigger();
+    Reject.happen();
 
     expect(PENDING.is()).toBe(false);
     expect(REJECTED.is()).toBe(false);
@@ -56,13 +56,13 @@ describe('Example: Promise', () => {
     expect(REJECTED.is()).toBe(false);
     expect(FULFILLED.is()).toBe(false);
 
-    Reject.trigger();
+    Reject.happen();
     
     expect(PENDING.is()).toBe(false);
     expect(REJECTED.is()).toBe(true);
     expect(FULFILLED.is()).toBe(false);
     
-    Resolve.trigger();
+    Resolve.happen();
 
     expect(PENDING.is()).toBe(false);
     expect(REJECTED.is()).toBe(true);

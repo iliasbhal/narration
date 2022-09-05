@@ -35,12 +35,12 @@ describe('Example: Toggle', () => {
     expect(OFF.is()).toBe(true);
     expect(ON.is()).toBe(false);
 
-    Toggle.trigger();
+    Toggle.happen();
 
     expect(OFF.is()).toBe(false);
     expect(ON.is()).toBe(true);
 
-    Toggle.trigger();
+    Toggle.happen();
 
     expect(OFF.is()).toBe(true);
     expect(ON.is()).toBe(false);
