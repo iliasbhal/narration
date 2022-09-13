@@ -12,9 +12,37 @@ type ExpressionCallback<Idx extends number> = Expressions[Idx]['callback'];
 type Arg<Idx extends number, ArgIndex extends number> = Parameters<ExpressionCallback<Idx>>[ArgIndex];
 type Return<Idx extends number> = ReturnType<ExpressionCallback<Idx>>;
 
-type Root = {}
-  & { it: { starts: { as: { (stateName: Arg<0, 0>) : Return<0>; }; }; }; }
-  & { it: { can: { be: { (stateName: Arg<1, 0>) : Return<1>; }; }; }; }
-  & { given: { (state: Arg<2, 0>) : { when: { (event: Arg<2, 1>) : { then: { it: { becomes: { (nextState: Arg<2, 2>) : Return<2>; }; }; } }; } }; }; };
+type Root = {
+  it: {
+    starts: {
+      as: {
+        (str: Arg<0, 0>) : Return<0>;
+      };
+    };
+    can: {
+      be: {
+        (str: Arg<1, 0>) : Return<1>;
+      };
+    };
+  };
+  given: {
+    (state: Arg<2, 0>) : {
+      when: {
+        (event: Arg<2, 1>) : {
+          then: {
+            it: {
+              becomes: {
+                (state: Arg<2, 2>) : Return<2>;
+              };
+              does: {
+                (action: Arg<3, 2>) : Return<3>;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+};
 
 export default builder as unknown as Root;

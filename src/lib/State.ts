@@ -1,5 +1,6 @@
 import { StateChartObject } from './StateChartObject';
 import { Event } from './Event';
+import { Action } from './Action';
 import { Transition } from './Transition';
 
 export interface StateConfig {
@@ -13,7 +14,8 @@ interface StateEventHandleConfig {
 export class State extends StateChartObject {
   name: string;
   initial: boolean = false;
-  on = new Map<Event, Transition>();
+  transitions = new Map<Event, Transition>();
+  actions = new Map<Event, Action<string, any>[]>();
 
   constructor(name: string, config?: StateConfig) {
     super();
@@ -24,26 +26,38 @@ export class State extends StateChartObject {
 
   getConfig() {
     const config : any = {};
-    const on = this.on.size && Array.from(this.on).reduce((acc, [event, transition]) => {
-      acc[event.name] = transition.getConfig();
-      return acc;
+    
+    Array.from(this.transitions).forEach(([event, transition]) => {
+      config.on = Object.assign({}, config.on, {
+        [event.name]: transition.getConfig(),
+      });
     }, {});
 
-    if (on) {
-      config.on = on;
-    }
+    Array.from(this.actions).forEach(([event, actions]) => {
+      if (!config.on[event.name].actions) {
+        config.on[event.name] = {
+          target: config.on[event.name],
+          actions: [],
+        }
+      }
+      
+      actions.forEach((action) => {
+        const actionConfig = action.getConfig();
+        config.on[event.name].actions.push(...actionConfig.actions)
+      })
+    });
 
     return config;
   }
 
   getOrCreateTransitionFromEvent(event: Event) {
-    const alreadyCreated = this.on.has(event);
+    const alreadyCreated = this.transitions.has(event);
     if (!alreadyCreated) {
       const transition = new Transition();
-      this.on.set(event, transition);
+      this.transitions.set(event, transition);
     }
     
-    return this.on.get(event);
+    return this.transitions.get(event);
   }
 
   addTransitionToOnEvent(event: Event, nextState: State) {
@@ -51,6 +65,17 @@ export class State extends StateChartObject {
     transition.link(this);
     event.link(this);
     transition.addTarget(nextState);
+  }
+
+  addActionToOnEvent(event: Event, action: Action<string, any>) {
+    event.link(this);
+    this.ctx.actions.add(action);
+
+    if (!this.actions.has(event)) {
+      this.actions.set(event, []);
+    }
+
+    this.actions.get(event).push(action);
   }
 
   is() {

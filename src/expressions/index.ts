@@ -30,4 +30,11 @@ export default compile(
       state.addTransitionToOnEvent(event, nextState);
     })
   ),
+
+  expression(
+    ({ given }) => given(State).when(Event).then.it.does(Action),
+    withNarrationCtx((state: State, event: Event, action: Action<string, any>, chart: StateChart) => {
+      state.addActionToOnEvent(event, action);
+    })
+  ),
 );

@@ -1,6 +1,7 @@
 import { createMachine, interpret, Interpreter, State as xState } from 'xstate';
 import { State } from './State';
 import { Event } from './Event';
+import { Action } from './Action';
 import { StateChartObject } from './StateChartObject';
 
 export * from './State';
@@ -11,6 +12,7 @@ export class StateChart extends StateChartObject {
   name: string;
   initial: State;
   states = new Set<State>();
+  actions = new Set<Action<string, any>>();
 
   constructor(name: string) {
     super();
@@ -30,7 +32,7 @@ export class StateChart extends StateChartObject {
     }
   }
 
-  getOrCreateState(state: State | string) {
+  private getOrCreateState(state: State | string) {
     return state instanceof State ? state : new State(state);
   }
 
@@ -75,9 +77,17 @@ export class StateChart extends StateChartObject {
   private state: xState<any>
   start() {
     const machineConfig = this.getConfig();
+    const actionsConfig = Array.from(this.actions)
+      .reduce((acc, action) => {
+        acc[action.name] = () => action.execute();
+        return acc;
+      }, {})
+
     const machine = createMachine({
       predictableActionArguments: true,
       ...machineConfig,
+    }, {
+      actions: actionsConfig
     });
     
     this.service = interpret(machine);
@@ -88,16 +98,16 @@ export class StateChart extends StateChartObject {
     });
   }
 
-  restart() {
+  public restart() {
     this.service?.stop();
     this.start();
   }
 
-  is(state: State) : boolean {
+  public is(state: State) : boolean {
     return this.state.matches(state.name);
   }
 
-  happen(event: Event) {
+  public happen(event: Event) {
     this.service.send({ type: event.name });
   }
 }
