@@ -1,6 +1,6 @@
 import { compile, expression } from 'chai-latte'
 import { State, Event, Action, StateChart }  from '../lib/StateChart';
-import { withNarrationCtx, GlobalContext } from '../GlobalContext';
+import { withNarrationCtx } from '../GlobalContext';
 
 export default compile(
   expression(
@@ -26,6 +26,7 @@ export default compile(
   ),
   expression(
     ({ given }) => given(State).when(Event).then.it.becomes(State),
+    ({ given }) => given(State).when(Event).then(State),
     withNarrationCtx((state: State, event: Event, nextState: State, chart: StateChart) => {
       state.addTransitionToOnEvent(event, nextState);
     })
@@ -33,6 +34,7 @@ export default compile(
 
   expression(
     ({ given }) => given(State).when(Event).then.it.does(Action),
+    ({ given }) => given(State).when(Event).then(Action),
     withNarrationCtx((state: State, event: Event, action: Action<string, any>, chart: StateChart) => {
       state.addActionToOnEvent(event, action);
     })

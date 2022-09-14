@@ -8,7 +8,7 @@
 import builder from './index';
 
 type Expressions = typeof builder.__expressions;
-type ExpressionCallback<Idx extends number> = Expressions[Idx]['callback'];
+type ExpressionCallback<Idx extends number> = Expressions[Idx][0]['callback'];
 type Arg<Idx extends number, ArgIndex extends number> = Parameters<ExpressionCallback<Idx>>[ArgIndex];
 type Return<Idx extends number> = ReturnType<ExpressionCallback<Idx>>;
 
@@ -38,6 +38,8 @@ type Root = {
                 (action: Arg<3, 2>) : Return<3>;
               };
             };
+            (state: Arg<2, 2>) : Return<2>;
+            (action: Arg<3, 2>) : Return<3>;
           };
         };
       };
