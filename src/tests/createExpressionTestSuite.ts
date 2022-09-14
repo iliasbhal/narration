@@ -19,13 +19,15 @@ export const createExpressionTestSuite = () => {
   });
 
   const ensureTDD = () => {
-    rawExpressions.__expressions.forEach((expression) => {
-      const expressionId = expression.builder.debugId;
-      if (writtenTestIds.has(expressionId)) {
-        return;
-      }
-
-      it.todo(expression.builder.debugId)
+    rawExpressions.__expressions.forEach((expressions) => {
+      expressions.forEach(({ expression }) => {
+        const expressionId = expression.debugId;
+        if (writtenTestIds.has(expressionId)) {
+          return;
+        }
+  
+        it.todo(expressionId)
+      });
     });      
   }
 

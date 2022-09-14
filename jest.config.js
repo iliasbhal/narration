@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
   },
   testPathIgnorePatterns: [
-    'build',
+    '<rootDir>/build',
   ],
   coveragePathIgnorePatterns: [
     '.d.ts$',

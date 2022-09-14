@@ -25,7 +25,7 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "chai-latte": "^0.1.0",
+    "chai-latte": "^0.2.3",
     "xstate": "^4.33.5"
   },
   "devDependencies": {
