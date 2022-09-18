@@ -12,7 +12,7 @@ type ExpressionCallback<Idx extends number> = Expressions[Idx][0]['callback'];
 type Arg<Idx extends number, ArgIndex extends number> = Parameters<ExpressionCallback<Idx>>[ArgIndex];
 type Return<Idx extends number> = ReturnType<ExpressionCallback<Idx>>;
 
-type Root = {
+export type Root = {
   it: {
     starts: {
       as: {

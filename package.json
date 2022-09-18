@@ -1,43 +1,23 @@
 {
-  "version": "0.0.1",
   "name": "narration",
-  "description": "Model statecharts just by describing them.",
-  "main": "build/index.js",
-  "typings": "build/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iliasbhal/narration.git"
-  },
-  "author": "Ilias Bhallil <ilias.bhal@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iliasbhal/narration/issues"
-  },
-  "homepage": "https://github.com/iliasbhal/narration",
+  "private": true,
+  "version": "0.0.1",
+  "author": "Ilias <ilias.bhal@gmail.com>",
   "scripts": {
-    "setup": "yarn build && npm link && npm link narration",
-    "dev": "yarn setup && yarn build:watch",
-    "deploy": "yarn test && yarn build && npm publish",
-    "compile:expressions": "npx chai-latte --input ./src/expressions/index",
-    "test": "jest",
-    "build": "yarn compile:expressions & tsc",
-    "build:watch": "tsc -w & yarn compile:expressions --watch"
+    "start": "yarn workspaces run start",
+    "test": "yarn workspaces run test"
   },
-  "peerDependencies": {},
-  "dependencies": {
-    "chai-latte": "^0.2.3",
-    "xstate": "^4.33.5"
+  "workspaces": {
+    "packages": [
+      "@narration/*"
+    ],
+    "nohoist": [
+      "**/*"
+    ]
   },
   "devDependencies": {
-    "@jest/types": "^28.1.3",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^28.1.6",
-    "@types/node": "^18.6.4",
-    "fs-extra": "^10.0.0",
-    "jest": "^28.1.3",
-    "ts-jest": "^28.0.7",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.2.3"
+    "@types/jest": "^29.0.3",
+    "@types/node": "^18.7.18"
   }
 }

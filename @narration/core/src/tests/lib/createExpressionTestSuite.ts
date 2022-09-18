@@ -1,4 +1,4 @@
-import rawExpressions from '../expressions/index';
+import rawExpressions from '../../expressions/index';
 
 type JestTest = (testName: string, callback: jest.ProvidesCallback) => void;
 
