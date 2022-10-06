@@ -5,7 +5,9 @@
   "author": "Ilias <ilias.bhal@gmail.com>",
   "scripts": {
     "start": "yarn workspaces run start",
-    "test": "yarn workspaces run test"
+    "test": "yarn workspaces run test",
+    "core": "yarn workspace @narration/core",
+    "react": "yarn workspace @narration/react"
   },
   "workspaces": {
     "packages": [
