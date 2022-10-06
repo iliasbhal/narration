@@ -3,7 +3,7 @@
   "name": "@narration/core",
   "description": "Model statecharts just by describing them.",
   "main": "build/index.js",
-  "typings": "build/index.d.ts",
+  "typings": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iliasbhal/narration.git"
@@ -15,13 +15,13 @@
   },
   "homepage": "https://github.com/iliasbhal/narration",
   "scripts": {
-    "setup": "yarn build && npm link && npm link narration",
+    "setup": "yarn build && npm link && npm link @narration/core",
     "dev": "yarn setup && yarn build:watch",
     "deploy": "yarn test && yarn build && npm publish",
-    "compile:expressions": "npx chai-latte --input ./src/expressions/index",
+    "chai-latte": "npx chai-latte --input ./src/expressions/index",
     "test": "jest",
-    "build": "yarn compile:expressions & tsc",
-    "build:watch": "tsc -w & yarn compile:expressions --watch"
+    "build": "yarn chai-latte && tsc",
+    "build:watch": "tsc -w & yarn chai-latte --watch"
   },
   "peerDependencies": {},
   "dependencies": {
