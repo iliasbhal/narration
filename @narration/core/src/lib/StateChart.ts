@@ -76,6 +76,11 @@ export class StateChart extends StateChartObject {
   private service: Interpreter<any, any, any, any, any>;
   private state: xState<any>
   start() {
+    const isStarted = this.service?.initialized;
+    if (isStarted) {
+      return;
+    }
+
     const machineConfig = this.getConfig();
     const actionsConfig = Array.from(this.actions)
       .reduce((acc, action) => {
@@ -96,6 +101,14 @@ export class StateChart extends StateChartObject {
     this.service.onTransition((state) => {
       this.state = state;
     });
+  }
+
+  public subscribe = (callback) => {
+    this.service.onTransition(callback);
+
+    return {
+      unsubscribe: () => this.service.off(callback),
+    }
   }
 
   public restart() {

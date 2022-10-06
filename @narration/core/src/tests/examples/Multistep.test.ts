@@ -3,10 +3,10 @@ import { createNarration, Event, Action, State } from '../..';
 describe('Example: Multistep', () => {
   const { it, given, end, ctx } = createNarration('multisteop');
 
-  const [INITIAL] = it.starts.as('INITIAL');
-  const [QUESTION_1] = it.can.be('QUESTION_1');
-  const [QUESTION_2] = it.can.be('QUESTION_2');
-  const [COMPLETED] = it.can.be('COMPLETED');
+  const INITIAL = it.starts.as('INITIAL');
+  const QUESTION_1 = it.can.be('QUESTION_1');
+  const QUESTION_2 = it.can.be('QUESTION_2');
+  const COMPLETED = it.can.be('COMPLETED');
   
   const log = new Action('log', jest.fn());
   const telemetry = new Action('telemetry', jest.fn());

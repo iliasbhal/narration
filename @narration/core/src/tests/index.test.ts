@@ -12,9 +12,9 @@ describe('createNarration', () => {
     expect(ctx).toBeInstanceOf(StateChart)
   });
 
-  it('can create sub state', () => {
+  it.skip('can create sub state', () => {
     const { it } = createNarration('abcd');
-    const [SMILING] = it.can.be('MOVING');
+    const SMILING = it.can.be('MOVING');
 
     // SMILING.can.be('WALKING');
     // SMILING.can.be('RUNNING');

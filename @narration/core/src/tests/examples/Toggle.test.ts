@@ -5,8 +5,8 @@ describe('Example: Toggle', () => {
 
   const Toggle = new Event('TOGGLE');
 
-  const [OFF] = it.starts.as('OFF');
-  const [ON] = it.can.be('ON');
+  const OFF = it.starts.as('OFF');
+  const ON = it.can.be('ON');
   
   given(OFF).when(Toggle).then.it.becomes(ON);
   given(ON).when(Toggle).then.it.becomes(OFF);

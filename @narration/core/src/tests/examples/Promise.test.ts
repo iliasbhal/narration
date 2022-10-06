@@ -3,9 +3,9 @@ import { createNarration, Event } from '../..';
 describe('Example: Promise', () => {
   const { it, given, end, ctx } = createNarration('promise');
 
-  const [PENDING] = it.starts.as('PENDING');
-  const [REJECTED] = it.can.be('REJECTED');
-  const [FULFILLED] = it.can.be('FULFILLED');
+  const PENDING = it.starts.as('PENDING');
+  const REJECTED = it.can.be('REJECTED');
+  const FULFILLED = it.can.be('FULFILLED');
   
   const Reject = new Event('REJECT');
   const Resolve = new Event('RESOLVE');
