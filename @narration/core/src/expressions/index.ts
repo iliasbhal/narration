@@ -1,5 +1,5 @@
 import { compile, expression } from 'chai-latte'
-import { State, Event, Action, StateChart }  from '../lib/StateChart';
+import { State, Event, Action }  from '../lib/StateChart';
 import { StateChartContext } from '../StateChartContext';
 
 export default compile(
@@ -10,9 +10,7 @@ export default compile(
       const state = new State(stateName);
       chart.addState(state)
       chart.setInitialState(state);
-      return [
-        state
-      ];
+      return state;
     }
   ),
   expression(
@@ -21,16 +19,20 @@ export default compile(
       const chart = StateChartContext.get();
       const state = new State(stateName);
       chart.addState(state)
-      return [
-        state
-      ];
+      return state;
+    }
+  ),
+  expression(
+    ({ it }) => it.can.happen(String),
+    (eventName: string) => {
+      const event = new Event(eventName);
+      return event;
     }
   ),
   expression(
     ({ given }) => given(State).when(Event).then.it.becomes(State),
     ({ given }) => given(State).when(Event).then(State),
     (state: State, event: Event, nextState: State) => {
-      const chart = StateChartContext.get();
       state.addTransitionToOnEvent(event, nextState);
     }
   ),
@@ -39,7 +41,6 @@ export default compile(
     ({ given }) => given(State).when(Event).then.it.does(Action),
     ({ given }) => given(State).when(Event).then(Action),
     (state: State, event: Event, action: Action<string, any>) => {
-      const chart = StateChartContext.get();
       state.addActionToOnEvent(event, action);
     }
   ),

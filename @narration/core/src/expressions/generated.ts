@@ -12,7 +12,7 @@ type ExpressionCallback<Idx extends number> = Expressions[Idx][0]['callback'];
 type Arg<Idx extends number, ArgIndex extends number> = Parameters<ExpressionCallback<Idx>>[ArgIndex];
 type Return<Idx extends number> = ReturnType<ExpressionCallback<Idx>>;
 
-export type Root = {
+type Root = {
   it: {
     starts: {
       as: {
@@ -23,23 +23,26 @@ export type Root = {
       be: {
         (str: Arg<1, 0>) : Return<1>;
       };
+      happen: {
+        (str: Arg<2, 0>) : Return<2>;
+      };
     };
   };
   given: {
-    (state: Arg<2, 0>) : {
+    (state: Arg<3, 0>) : {
       when: {
-        (event: Arg<2, 1>) : {
+        (event: Arg<3, 1>) : {
           then: {
             it: {
               becomes: {
-                (state: Arg<2, 2>) : Return<2>;
+                (state: Arg<3, 2>) : Return<3>;
               };
               does: {
-                (action: Arg<3, 2>) : Return<3>;
+                (action: Arg<4, 2>) : Return<4>;
               };
             };
-            (state: Arg<2, 2>) : Return<2>;
-            (action: Arg<3, 2>) : Return<3>;
+            (state: Arg<3, 2>) : Return<3>;
+            (action: Arg<4, 2>) : Return<4>;
           };
         };
       };
